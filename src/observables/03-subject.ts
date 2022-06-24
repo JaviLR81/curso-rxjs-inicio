@@ -1,5 +1,12 @@
 import { Observable, Observer, Subject } from 'rxjs';
 
+/**
+ * 
+ * subject() 
+ * 
+ * 
+ */
+
 const observer: Observer<any> = {
         next: resp => {
           console.log('Siguiente desde el observer: '+resp);
@@ -37,7 +44,6 @@ const subscription = intervalo$.subscribe( subject$ );
 
     const sub1 = subject$.subscribe(observer);
     const sub2 = subject$.subscribe(observer);
-
 
     setTimeout(() => {
         subject$.next(10);

@@ -15,7 +15,6 @@ boton.innerHTML = 'Detener Timer';
 
 document.querySelector('body').append( boton );
 
-
 const counter$  = interval(1000);
 
 // const clickBtn$ = fromEvent( boton, 'click' );

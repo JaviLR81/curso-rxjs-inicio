@@ -1,6 +1,6 @@
 import { ajax } from 'rxjs/ajax';
 import { switchMap, map } from 'rxjs/operators';
-import { zip, of, Observable } from 'rxjs';
+import { zip, of } from 'rxjs';
 
 /**
  * Ejercicio: 
@@ -47,20 +47,18 @@ import { zip, of, Observable } from 'rxjs';
     // ==================================================================
 
     // Realizar el llamado al URL para obtener a Luke Skywalker
-    getRequest(SW_API+"/people/1").pipe(
+    getRequest(`Aquí va un URL`).pipe(
         // Realizar los operadores respectivos aquí
         
-        // Primera respuesta
-        // switchMap<any, Observable<any>>((resp: any) => getRequest(resp.homeworld))
+
+
         
-        switchMap<any, Observable<any>>((resp: any) => zip(
-            of(resp), 
-            getRequest(resp.homeworld))
-        ),
-        map( ([personaje, especie]) => ({personaje, especie}))
+
     // NO TOCAR el subscribe ni modificarlo ==
-    ).subscribe( console.log );           // ==
+    ).subscribe( console.log )           // ==
     // =======================================
+
+
 
 })();
 

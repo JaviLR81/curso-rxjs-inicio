@@ -1,0 +1,28 @@
+Utilizamos extensiones reactivas por que siempre queremos tener información
+en tiempo real, crear aplicaciones más dinamicas
+
+°Eventos de la interfaz de usuario
+°Comunicaciones por sockets
+°Cuando trabajamos con flujos de información
+
+Observables
+°Son la fuente de información
+°Pueden ser sincronos o asíncronos
+°Pueden ser finitos o infinitos
+
+Susbcribers
+°Estan pendientes y consumen la data del Observable
+°Desconocen lo que hay detrás del Observable
+
+Operators
+°Son muy utilizados para transformar
+°Son muy utilizados para combinar y crear nuevos Observables
+
+Beneficios
+°Evitar el callback Hell
+°Trabajar de forma simple tareas sincronas y asíncronas
+°Es facil transfornmar los flujos
+°Fácil de implementar
+°Faciles de mantener
+
+
