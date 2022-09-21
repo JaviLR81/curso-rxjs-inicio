@@ -4,9 +4,9 @@ import { throttleTime, pluck, distinctUntilChanged } from 'rxjs/operators';
 
 /**
  * 
- * Emite inmediato y espera un segundo hasta volver a considerar el primero
- * y espera 1 segundo ignorando las emisiones
- * 
+ * Emite inmediato y espera N segundos
+ * hasta volver a considerar alguna emisión siempre emite el primer 
+ * valor al pasar el tiempo indicado
  * 
  */
 
@@ -25,8 +25,8 @@ const input$ = fromEvent( input, 'keyup' );
 
 input$.pipe(
     throttleTime(400, asyncScheduler, {
-        leading: false,
-        trailing: true
+        leading: false, // primero
+        trailing: true // ultimo
     }),
     pluck('target','value'),
     distinctUntilChanged()

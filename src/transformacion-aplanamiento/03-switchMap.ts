@@ -13,7 +13,7 @@ const URL = 'https://httpbin.org/delay/1?arg='
 /**
  * A diferencia de mergeMap(), 
  * switchMap() cancela los observables que antes fueron emitidos
- * solo manteniendo la última subscripción
+ * solo manteniendo la última emisión de la fuente como subscripción activa
  */
 input$.pipe(
     pluck('target', 'value'),

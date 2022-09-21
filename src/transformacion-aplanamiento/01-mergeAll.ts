@@ -6,8 +6,9 @@ import { GithubUsersResp } from '../interfaces/github-users.interface';
 
 
 /**
- * Se suscribe internamente a los observbles que el source$ emita
- * y se completa cuando se completan los hijos
+ * Se suscribe internamente a los observbles que el source$ emita y los emite juntos en una salida unificada
+ * y se completa cuando se completan los obs$ hijos o en su caso si no hay algún hijo pendiente cuando
+ * se complete el padre
  */
 
 const body = document.querySelector('body');
@@ -21,6 +22,7 @@ const mostrarUsuarios = ( usuarios: GithubUser[] ) => {
     
     console.log(usuarios);
     orderList.innerHTML = '';
+
 
     for( const usuario of usuarios ) {
 
@@ -49,9 +51,7 @@ input$.pipe(
     debounceTime<KeyboardEvent>(500),
     // pluck<KeyboardEvent, string>('target','value'), // has an error with typing
     map<KeyboardEvent, string>(evento => evento.target['value']),
-    map<string, Observable<GithubUsersResp>>( texto => ajax.getJSON(
-        `https://api.github.com/search/users?q=${ texto }`
-    )),
+    map<string, Observable<GithubUsersResp>>( texto => ajax.getJSON(`https://api.github.com/search/users?q=${ texto }`)),
     mergeAll<Observable<GithubUsersResp>>(),
     // map<GithubUsersResp, GithubUser[]>( resp => resp.items )
     pluck<GithubUsersResp, "items">('items')

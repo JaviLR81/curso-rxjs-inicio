@@ -8,7 +8,7 @@ import { of,from,range, map, fromEvent} from "rxjs";
  */
 
 const mapPipe = map( (n:number) => n * 10 );
-const obs$ = range(1,5).pipe( map( (n) => (n * 10).toFixed(2) ) )
+const obs$ = range(1,5).pipe( map<number, string>( (n) => (n * 10).toFixed(2) ) )
 
 obs$
 .subscribe( console.log )

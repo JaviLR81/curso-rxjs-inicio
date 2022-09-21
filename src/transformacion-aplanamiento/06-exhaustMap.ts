@@ -3,7 +3,7 @@ import { take, exhaustMap } from 'rxjs/operators';
 
 /**
  * Ignora las subscripciones nuevas
- * dando prioridad a la sunscripción que en ese momento esta tomando
+ * dando prioridad a la subscripción que en ese momento esta tomando
  * Solo maneja una subscripción activa
  * Util cuando hay un submit con la tecla enter
  * prevenir dobles submits

@@ -7,6 +7,9 @@ import { takeUntil, skip, tap } from 'rxjs/operators';
  * takeUntil() emite vlaores hasta que otro observable emite su primer valor
  * en este ejemplo estamos deteniendo el interval por medio de este operador
  * 
+ * skip() omitir N cantidad de emisiones inciales, bloqueando la emisión del obs$ o bloqueando a los
+ * operadores secuentes en un tiempo determinado
+ * 
  * 
  */
 

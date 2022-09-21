@@ -2,7 +2,7 @@ import { of,from} from "rxjs";
 
 /**
  * 
- * of = toma argumen
+ * of    = toma argumentos y genera una secuencia de valores
  *  from = crea un observable en base a un array,objeto,promise,iterable,observable
  * 
  */
@@ -15,7 +15,7 @@ const observer = {
       
     },
     complete: () => {
-        console.log('Complete');
+        console.log('Completed');
     }
 }
 

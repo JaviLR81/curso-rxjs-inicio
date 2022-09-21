@@ -2,7 +2,11 @@ import { forkJoin, of } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
 import { catchError } from 'rxjs/operators';
 
-
+/**
+ * 
+ * En caso uno falle todos fallan
+ * 
+ */
 
 const GITHUB_API_URL = 'https://api.github.com/users';
 const GITHUB_USER    = 'klerith';

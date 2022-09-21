@@ -1,67 +1,25 @@
-import { ajax } from 'rxjs/ajax';
-import { switchMap, map } from 'rxjs/operators';
-import { zip, of, Observable } from 'rxjs';
+import { interval, concat, of } from 'rxjs';
+import { take } from 'rxjs/operators';
+
 
 /**
- * Ejercicio: 
- *  Realizar 2 peticiones HTTP (ajax) una después de otra.
- *  
- *  La primera debe de obtener el personaje de Star Wars:
- *   Luke Skywalker, llamando el endpoint:   /people/1/
  * 
- *  La segunda petición, debe de ser utilizando el objeto
- *  de la petición anterior, y tomar la especie (species),
- *  que es un arreglo de URLs (array), dentro de ese arreglo, 
- *  tomar la primera posición y realizar la llamada a ese URL,
- *  el cual debería de traer información sobre su especie (Human)
+ * Recibe observables como parametros o un iterable
+ * concat() no es un operador, sino es una función que permite
+ * emitir la salidad de varios observables en forma secuencial
+ * sin embargo la emisión es secuencial hasta terminar de emitir los valores de un obs$ pasa al siguiente y al siguiente
+ * si algún observable no se completa previamente no continua hasta que se termie, y la subscripción
+ * se completa cuando todos los observables se hayan completado y emitido
+ * 
  */
 
-// Respuesta esperada:
-// Información sobre los humanos en el universo de Star Wars
-// Ejemplo de la data esperada
-/*
- { name: "Human", classification: "mammal", designation: "sentient", average_height: "180", skin_colors: "caucasian, black, asian, hispanic", …}
-*/
+const interval$ = interval(1000);
 
-// Respuesta esperada con Mayor dificultad
-// Retornar el siguiente objeto con la información de ambas peticiones
-// Recordando que se disparan una después de la otra, 
-// con el URL que viene dentro del arreglo de 'species'
-
-// Tip: investigar sobre la función zip: 
-//      Que permite combinar observables en un arreglo de valores
-// https://rxjs-dev.firebaseapp.com/api/index/function/zip
-
-// Ejemplo de la data esperada:
-/*
-    especie: {name: "Human", classification: "mammal", designation: "sentient", average_height: "180", skin_colors: "caucasian, black, asian, hispanic", …}
-    personaje: {name: "Luke Skywalker", height: "172", mass: "77", hair_color: "blond", skin_color: "fair", …}
-*/
+concat(
+    interval$.pipe( take(3) ), // se ejecuta de inicio
+    interval$.pipe( take(2) ), // se ejecuta si se completa el anterior
+    of(1500), // se ejecuta si se completa el anterior,
+    of([1, 2, 3, 4])
+).subscribe( console.log )
 
 
-(() =>{
-
-    // No tocar ========================================================
-    const SW_API = 'https://swapi.dev/api';                     
-    const getRequest = ( url: string ) => ajax.getJSON<any>(url);
-    // ==================================================================
-
-    // Realizar el llamado al URL para obtener a Luke Skywalker
-    getRequest(SW_API+"/people/1").pipe(
-        // Realizar los operadores respectivos aquí
-        
-        // Primera respuesta
-        // switchMap<any, Observable<any>>((resp: any) => getRequest(resp.homeworld))
-        
-        switchMap<any, Observable<any>>((resp: any) => zip(
-            of(resp), 
-            getRequest(resp.homeworld))
-        ),
-        map( ([personaje, especie]) => ({personaje, especie}))
-    // NO TOCAR el subscribe ni modificarlo ==
-    ).subscribe( console.log );           // ==
-    // =======================================
-
-})();
-
-		

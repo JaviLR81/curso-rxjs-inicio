@@ -14,7 +14,7 @@ const click$ = of(1,2,3,72,5);
 click$
 .pipe(
     tap(console.log),
-    takeWhile(x => x < 4,false) // el último argumento es si incluye el elemento que rompe la condición
+    takeWhile(x => x < 4, false) // el último argumento maneja si deseamos la emisión del elemento que rompe la condición
 )
 .subscribe({
     next: resp => {

@@ -2,8 +2,8 @@ import { fromEvent } from 'rxjs';
 import { debounceTime, pluck, distinctUntilChanged, map } from 'rxjs/operators';
 
 /**
- * Cancela las emisiones intermedias y solo va a emitir una
- * cada tantos segundos
+ * Cancela las emisiones intermedias y solo va a emitir la última
+ * cada N segundos
  */
 
 const click$ = fromEvent( document, 'click' );

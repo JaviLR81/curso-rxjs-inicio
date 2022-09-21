@@ -36,7 +36,7 @@ interface Personaje {
 }
 
 
-const personajes :Personaje[] = 
+const personajes: Personaje[] = 
 [
     {nombre: 'Megaman'},
     {nombre: 'Superman'},
@@ -96,7 +96,7 @@ const personajes2$ = from(personajes2);
 
 personajes2$
 .pipe(
-    distinctUntilChanged((ant,act) => ant.nombre === act.nombre)
+    distinctUntilChanged((ant, act) => ant.nombre === act.nombre) // devolver true significa que lo queremos bloquear
 )
 .subscribe(console.log);
  

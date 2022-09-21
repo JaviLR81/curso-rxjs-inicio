@@ -4,7 +4,8 @@ import { takeUntil, skip, tap, distinct, distinctUntilChanged, distinctUntilKeyC
 
 /**
  * 
- * distincUntilKeyChanged() hace referencia directamente a la key que queremos evaluar si ha cambiado o no
+ * distincUntilKeyChanged() 
+ * hace referencia directamente a la key que queremos evaluar si ha cambiado o no
  */
 
  interface Personaje {

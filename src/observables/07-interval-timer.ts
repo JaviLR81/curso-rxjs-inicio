@@ -18,10 +18,14 @@ const observer = {
     }
 }
 
+// valor inicial es 0
+const interval$ = interval(1000);
 
-const interval$ = interval(1000); // valor inicial es 0
-// const timer$ = timer(2000); //  valor inicial es 0, emite después de el tiempo indicado y se completa
-// const timer$ = timer(2000,1000); // como un interval, que inicie en dos segundos y cada segundo incremente
+//  valor inicial es 0, emite después de el tiempo indicado y se completa
+// const timer$ = timer(5000);
+
+// como un interval, que inicie en dos segundos y cada segundo incremente
+// const timer$ = timer(2000,1000);
 
 
 const hoyEn5 = new Date(); // programar un momento especifico para emitir algo en la línea del tiempo
@@ -32,7 +36,6 @@ const timer$ = timer(hoyEn5);
 console.log('Inicio');
 
 // interval$.subscribe(observer);
-
 timer$.subscribe(observer);
 
 console.log('Fin');

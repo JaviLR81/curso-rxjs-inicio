@@ -12,7 +12,17 @@ import { asyncScheduler, of,range  } from "rxjs";
 
 console.log('Inicio');
 
-let obs$ = range(1,5,asyncScheduler);
-obs$.subscribe(console.log);
+let obs$ = range(1,5);
+obs$.subscribe({
+    next: resp => {
+      
+    },
+    error : e => {
+      
+    },
+    complete: () => {
+        console.log('Completado');
+    }
+});
 
 console.log('Fin');
