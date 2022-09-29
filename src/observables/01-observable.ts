@@ -17,6 +17,8 @@ const observer: Observer<any> = {
         }
 }
 
+
+// const obs$ = Observable.create(); // deprecated
 const obs$ = new Observable<string>( subscriber => {
 
     subscriber.next('Hola');
